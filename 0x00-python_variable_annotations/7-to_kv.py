@@ -10,4 +10,17 @@ from typing import Union, Tuple
 
 
 def to_kv(k: str, v: Union[int, float]) -> Tuple[str, float]:
+    """
+    Generates a tuple where the first element is
+    the given key and the second element is the square of the given value.
+
+    Args:
+        k (str): The key.
+        v (Union[int, float]): The value, which
+        can be either an int or a float.
+
+    Returns:
+        Tuple[str, float]: A tuple containing the key
+        and the square of the value.
+    """
     return k, v ** 2
