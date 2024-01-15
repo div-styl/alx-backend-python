@@ -12,5 +12,5 @@ import random
 async def wait_random(max_delay: int = 10) -> float:
     """return max_delay"""
     rnd = random.uniform(0, max_delay)
-    asyncio.sleep(rnd)
+    await asyncio.sleep(rnd)
     return rnd
