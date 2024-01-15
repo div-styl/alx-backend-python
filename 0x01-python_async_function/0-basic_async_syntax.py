@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """
 simple async func
 """
@@ -10,6 +10,6 @@ async def wait_random(max_delay: int = 10) -> float:
     """
     await for a random number between 0 and max_delay which 10
     """
-    rnd = random.uniform(0, max_delay)
-    await asyncio.sleep(rnd)
-    return rnd
+    delay = random.uniform(0, max_delay)
+    await asyncio.sleep(delay)
+    return delay
