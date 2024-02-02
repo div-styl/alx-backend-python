@@ -66,7 +66,7 @@ class TestMemoize(TestCase):
         """test memoize decor on prop mocking method"""
         class TestCase:
             """dummy class for testing """
-            def a_method (self)-> int:
+            def a_method(self) -> int:
                 """mocked method for testing"""
                 return 42
 
