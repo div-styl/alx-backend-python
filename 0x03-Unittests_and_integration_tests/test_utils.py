@@ -8,7 +8,7 @@ from parameterized import parameterized
 from unittest.mock import patch, Mock
 
 
-class TestAccessNestedMap(unittest.TestCase):
+class TestAccessNestedMap(TestCase):
     """class for testing access nested map"""
 
     @parameterized.expand(
@@ -38,7 +38,7 @@ class TestAccessNestedMap(unittest.TestCase):
             access_nested_map(nested_map, path)
 
 
-class TestGetJson(unittest.TestCase):
+class TestGetJson(TestCase):
     """class for testing the json resp"""
     @parameterized(
         [
@@ -58,3 +58,33 @@ class TestGetJson(unittest.TestCase):
             output = get_json(url)
         mocked_get.assert_called_once_with(url)
         self.assertEqual(output, test_payload)
+
+
+class TestMemoize(TestCase):
+    """Test case for memoriz decor"""
+    def test_memoize(self):
+        """test memoize decor on prop mocking method"""
+        class TestCase:
+            """dummy class for testing """
+            def a_method (self)-> int:
+                """mocked method for testing"""
+                return 42
+
+            @memoize
+            def a_property(self) -> int:
+                """prop under testing using memoize decor"""
+                return self.a_method()
+
+        with patch.object(TestCase, 'a_method') as mock_meth:
+            mock_meth.return_value = 42
+            dmmy = TestCase()
+            res1 = dmmy.a_property
+            res2 = dmmy.a_property
+
+        dmmy = TestCase()
+        res1 = dmmy.a_property
+        res2 = dmmy.a_property
+
+        mocked_method.assert_called_once()
+        self.assertEqual(res1, 42)
+        self.assertEqual(res1, 42)
