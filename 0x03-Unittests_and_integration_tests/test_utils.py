@@ -26,7 +26,7 @@ class TestAccessNestedMap(TestCase):
 
     @parameterized.expand(
         [
-            ({}, ("a",), "a"),
+            ({}, ("a",)),
             ({"a": 1}, ("a", "b")),
         ]
     )
@@ -34,7 +34,7 @@ class TestAccessNestedMap(TestCase):
         self, nested_map: Mapping, path: Sequence
     ):
         """test that keyerror is raised for the input"""
-        with self.assertRaises(KeyError) as e:
+        with self.assertRaises(KeyError):
             access_nested_map(nested_map, path)
 
 
@@ -43,7 +43,7 @@ class TestGetJson(TestCase):
     @parameterized.expand(
         [
             ("http://example.com", {"payload": True}),
-            ("http://holberton.io", {"payload": False})
+            ("http://holberton.io", {"payload": False}),
         ]
     )
     def test_get_json(
@@ -54,7 +54,7 @@ class TestGetJson(TestCase):
         """Test the get json function by mocking the request"""
         mock_resp = Mock()
         mock_resp.json.return_value = test_payload
-        with patch('request.get', return_value=mock_resp) as mocked_get:
+        with patch('requests.get', return_value=mock_resp) as mocked_get:
             output = get_json(url)
         mocked_get.assert_called_once_with(url)
         self.assertEqual(output, test_payload)
@@ -75,8 +75,8 @@ class TestMemoize(TestCase):
                 """prop under testing using memoize decor"""
                 return self.a_method()
 
-        with patch.object(TestCase, 'a_method') as mock_meth:
-            mock_meth.return_value = 42
+        with patch.object(TestCase, 'a_method') as mocked_method:
+            mocked_method.return_value = 42
             dmmy = TestCase()
             res1 = dmmy.a_property
             res2 = dmmy.a_property
