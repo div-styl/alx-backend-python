@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" Module for testing """
+""" Module for testing the utils """
 from parameterized import parameterized
 import unittest
 from unittest.mock import patch
@@ -23,8 +23,8 @@ class TestAccessNestedMap(unittest.TestCase):
 
     @parameterized.expand(
         [
-            ({}, ("a",), "a"),
-            ({{"a": 1}}, ("a", "b"), "b"),
+            ({}, ("a",), 'a'),
+            ({{"a": 1}}, ("a", "b"), 'b'),
         ]
     )
     def test_access_nested_map_exception(self, nested_map, path, expected):
