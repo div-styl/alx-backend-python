@@ -27,7 +27,7 @@ class TestAccessNestedMap(TestCase):
     @parameterized.expand(
         [
             ({}, ("a",), "a"),
-            ({{"a": 1}}, ("a", "b"), "b"),
+            ({"a": 1}, ("a", "b")),
         ]
     )
     def test_access_nested_map_exception(
@@ -40,7 +40,7 @@ class TestAccessNestedMap(TestCase):
 
 class TestGetJson(TestCase):
     """class for testing the json resp"""
-    @parameterized(
+    @parameterized.expand(
         [
             ("http://example.com", {"payload": True}),
             ("http://holberton.io", {"payload": False})
