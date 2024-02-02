@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """ Module for testing the utils """
 from typing import Mapping, Sequence, Dict, Any
-from parameterized import parameterized
-import unittest
-from unittest.mock import patch
 from utils import access_nested_map, get_json, memoize
+from unittest import TestCase
 import requests
+from parameterized import parameterized
+from unittest.mock import patch, Mock
 
 
 class TestAccessNestedMap(unittest.TestCase):
