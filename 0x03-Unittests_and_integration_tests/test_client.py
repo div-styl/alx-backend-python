@@ -60,7 +60,7 @@ class TestGithubOrgClient(TestCase):
     ('org_payload', 'repos_payload', 'expected_repos', 'apache2_repos'),
     TEST_PAYLOAD
 )
-class TestIntegrationGithubOrgClient(TestCase):
+class TestIntegrationGithubOrgClient(unittest.TestCase):
     """integration test cases for the githubclient"""
     @classmethod
     def setUpClass(cls):
